@@ -5,15 +5,31 @@ import { axiosClassic } from '@/api/axios'
 import { removeFromStorage, saveTokenStorage } from './auth-token.service'
 
 export const authService = {
-	async main(type: 'login' | 'register', data: IAuthForm) {
+	async register(formData: FormData) {
 		const response = await axiosClassic.post<IAuthResponse>(
-			`/auth/${type}`,
-			data
+			'/auth/register',
+			{
+				email: formData.get("email"),
+				password: formData.get("password"),
+			}
+		)
+
+		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+		
+		
+	},
+
+	async login(formData: FormData) {
+		const response = await axiosClassic.post<IAuthResponse>(
+			'/auth/login',
+			{
+				email: formData.get("email"),
+				password: formData.get("password"),
+			}
 		)
 
 		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
 
-		return response
 	},
 
 	async getNewTokens() {
@@ -21,7 +37,7 @@ export const authService = {
 			'/auth/login/access-token'
 		)
 
-		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+		if (response.data.accessToken) {saveTokenStorage(response.data.accessToken)}
 
 		return response
 	},
