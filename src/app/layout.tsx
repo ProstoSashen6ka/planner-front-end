@@ -31,16 +31,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className=" flex h-screen w-screen">
-          <div className=" bg-zinc-700 h-full w-40 border border-slate-950">
-            <Nav/>
-          </div>
-          <div className="flex flex-col grow">
-            <div className="flex justify-between bg-neutral-700 h-20 w-full border border-slate-950 border-l-0">
-              <div className="m-7 font-bold text-xl">PLANNER</div>
-              <Auth/>
+            <div className=" bg-zinc-700 h-full w-40 border border-slate-950">
+              <Nav/>
             </div>
-            <div className="bg-slate-700 grow">{children}</div>
-          </div>
+            <div className="flex flex-col grow">
+               <div className="flex justify-between bg-neutral-700 h-20 w-full border border-slate-950 border-l-0">
+                <div className="m-7 font-bold text-xl">PLANNER</div>
+                 <Auth/>
+              </div>
+               <div className="bg-slate-700 grow">{children}</div>
+            </div>
         </div>
         
       </body>
